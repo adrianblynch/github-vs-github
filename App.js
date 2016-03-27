@@ -39,18 +39,19 @@ class App extends React.Component {
 		}
 	}
 
-	handleReposResponse(repos, username) {
-		this.addUserIfNotPresent(this.mapReposToUser(repos, username))
+	handleReposResponse(repos) {
+		this.addUserIfNotPresent(this.mapReposToUser(repos))
 	}
 
 	handleReposFailure(node, className) {
 		node.classList.remove(className)
-		setTimeout(() => node.classList.add(className), 0)
+		setTimeout(() => node.classList.add(className), 0) // Note: http://stackoverflow.com/questions/17296576/css3-transition-doesnt-work-when-i-remove-class-of-newly-created-element
 	}
 
-	mapReposToUser(repos, username) {
+	mapReposToUser(repos) {
 		return {
-			username: username,
+			username: repos[0].owner.login,
+			avatarUrl: repos[0].owner.avatar_url,
 			starCount: repos.reduce((count, repo) => count + repo.stargazers_count, 0)
 		}
 	}
@@ -79,9 +80,9 @@ class ScoreboardItem extends React.Component {
 		const position = this.props.position
 		return (
 			<li>
-				<span>#{ position } </span>
-				<span>{ item.username } </span>
-				<span>{ item.starCount } star{ item.starCount !== 1 ? 's' : '' }</span>
+				<img src="http://lorempixum.com/100/100/nature/1" width="100" />
+				<h3>{ item.username }</h3>
+				<p>{ item.starCount } star{ item.starCount !== 1 ? 's' : '' }</p>
 			</li>
 		)
 	}
