@@ -25,9 +25,19 @@
 	}
 }
 
+/* User search */
+
+input {
+	outline: none;
+	/*border: 1px solid #ccc;*/
+}
+
+/* Scoreboard */
+
 ul {
 	list-style-type: none;
-	border: black solid 1px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
 	padding: 0px;
 }
 
@@ -38,6 +48,7 @@ h3 {
 li img {
 	float: left;
 	margin: 0px 15px 0px 0px;
+	border-radius: 5px;
 }
 
 li p {

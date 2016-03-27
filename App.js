@@ -14,21 +14,31 @@ class App extends React.Component {
 	constructor() {
 		super()
 		this.state = { users: [] }
-		this.handleKeyPress = this.handleKeyPress.bind(this)
+		this.handleSearch = this.handleSearch.bind(this)
+	}
+
+	componentDidMount() {
+		ReactDOM.findDOMNode(this.refs.username).focus();
 	}
 
 	addUserIfNotPresent(user) {
-		if (this.state.users.find(item => item.username === user.username) === undefined) {
-			this.setState({ users: [...this.state.users, user].sort(this.sortByStarCount) })
+		if (!this.userExists(user)) {
+			this.setState({
+				users: [...this.state.users, user].sort(this.sortByStarCount)
+			})
 		}
+	}
+
+	userExists(userToAdd) {
+		return this.state.users.find(user => user.username === userToAdd.username) !== undefined
 	}
 
 	sortByStarCount(a, b) {
 		return b.starCount - a.starCount
 	}
 
-	handleKeyPress(event) { // Note: Because `event` is sythetic, we can't use native onSubmit and stop form submission without some magic
-		if (event.key === 'Enter') {
+	handleSearch(event) {
+		if (event.key === 'Enter' || event.type === 'click') { // Note: I don't think this...
 			const node = ReactDOM.findDOMNode(this.refs.username)
 			const username = node.value.trim()
 			fetch('https://api.github.com/users/' + username + '/repos?per_page=100')
@@ -63,10 +73,11 @@ class App extends React.Component {
 				<input
 					ref="username"
 					type="text"
-					placeholder="GitHub usernames..."
-					onKeyPress={this.handleKeyPress}
+					placeholder="GitHub username..."
+					onKeyPress={ this.handleSearch }
 				/>
-				<Scoreboard users={this.state.users} />
+				<button onClick={ this.handleSearch }>Go</button>
+				<Scoreboard users={ this.state.users } />
 			</div>
 		)
 	}
@@ -76,13 +87,13 @@ class App extends React.Component {
 class ScoreboardItem extends React.Component {
 
 	render() {
-		const item = this.props.item
+		const user = this.props.user
 		const position = this.props.position
 		return (
 			<li>
-				<img src="http://lorempixum.com/100/100/nature/1" width="100" />
-				<h3>{ item.username }</h3>
-				<p>{ item.starCount } star{ item.starCount !== 1 ? 's' : '' }</p>
+				<img src={ user.avatarUrl } width="100" height="100" />
+				<h3>{ user.username }</h3>
+				<p>{ user.starCount } star{ user.starCount !== 1 ? 's' : '' }</p>
 			</li>
 		)
 	}
@@ -96,9 +107,9 @@ class Scoreboard extends React.Component {
 		const users = this.props.users.map((item, index) => {
 			return (
 				<ScoreboardItem
-					position={index + 1}
-					item={item}
-					key={index}
+					position={ index + 1 }
+					user={ item }
+					key={ index }
 				/>
 			)
 		})
