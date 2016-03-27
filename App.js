@@ -19,15 +19,19 @@ class App extends React.Component {
 
 	addUserIfNotPresent(user) {
 		if (this.state.users.find(item => item.username === user.username) === undefined) {
-			this.setState({ users: [...this.state.users, user] })
+			this.setState({ users: [...this.state.users, user].sort(this.sortByStarCount) })
 		}
+	}
+
+	sortByStarCount(a, b) {
+		return b.starCount - a.starCount
 	}
 
 	handleKeyPress(event) { // Note: Because `event` is sythetic, we can't use native onSubmit and stop form submission without some magic
 		if (event.key === 'Enter') {
 			const node = ReactDOM.findDOMNode(this.refs.username)
-			const username = node.value
-			fetch('https://api.github.com/users/' + username + '/repos')
+			const username = node.value.trim()
+			fetch('https://api.github.com/users/' + username + '/repos?per_page=100')
 				.then(res => res.json())
 				.then(json => this.handleReposResponse(json, username)) // Note: Why am I passing `username` through? Because `mapReposToUser` needs it! This is nasty!
 				.catch(err => this.handleReposFailure(node, 'warn'))
