@@ -29,16 +29,16 @@
 
 input {
 	outline: none;
-	/*border: 1px solid #ccc;*/
 }
 
 /* Scoreboard */
 
 ul {
 	list-style-type: none;
+	padding: 0px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
-	padding: 0px;
+	box-shadow: 0px 8px 6px -6px #444;
 }
 
 h3 {
@@ -48,7 +48,7 @@ h3 {
 li img {
 	float: left;
 	margin: 0px 15px 0px 0px;
-	border-radius: 5px;
+	border-radius: 50px;
 }
 
 li p {
@@ -58,4 +58,9 @@ li p {
 li {
 	padding: 10px;
 	overflow: auto;
+	border-top: 1px solid #ccc;
+}
+
+li:first-child {
+	border-top: 0px;
 }

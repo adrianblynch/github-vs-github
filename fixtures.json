@@ -1,0 +1,34 @@
+{
+	"users": [
+		{
+			"username": "jquery",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/70142?v=3",
+			"starCount": 80978,
+			"ownReposCount": 49
+		},
+		{
+			"username": "tj",
+			"starCount": 2232,
+			"ownReposCount": 374,
+			"avatarUrl": "https://avatars.githubusercontent.com/u/25254?v=3"
+		},
+		{
+			"username": "adrianblynch",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/4160967?v=3",
+			"starCount": 43,
+			"ownReposCount": 100
+		},
+		{
+			"username": "clarkie",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/2292639?v=3",
+			"starCount": 21,
+			"ownReposCount": 47
+		},
+		{
+			"username": "owenDods",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/9574149?v=3",
+			"starCount": 1,
+			"ownReposCount": 3
+		}
+	]
+}

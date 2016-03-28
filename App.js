@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Scoreboard from './Scoreboard'
+import fixtures from 'json!./fixtures.json'
 
 /*
 	Todos/Notes:
@@ -19,6 +21,7 @@ class App extends React.Component {
 
 	componentDidMount() {
 		ReactDOM.findDOMNode(this.refs.username).focus();
+		this.setState(fixtures)
 	}
 
 	addUserIfNotPresent(user) {
@@ -62,7 +65,8 @@ class App extends React.Component {
 		return {
 			username: repos[0].owner.login,
 			avatarUrl: repos[0].owner.avatar_url,
-			starCount: repos.reduce((count, repo) => count + repo.stargazers_count, 0)
+			starCount: repos.reduce((count, repo) => count + repo.stargazers_count, 0),
+			ownReposCount: repos.length
 		}
 	}
 
@@ -79,45 +83,6 @@ class App extends React.Component {
 				<button onClick={ this.handleSearch }>Go</button>
 				<Scoreboard users={ this.state.users } />
 			</div>
-		)
-	}
-
-}
-
-class ScoreboardItem extends React.Component {
-
-	render() {
-		const user = this.props.user
-		const position = this.props.position
-		return (
-			<li>
-				<img src={ user.avatarUrl } width="100" height="100" />
-				<h3>{ user.username }</h3>
-				<p>{ user.starCount } star{ user.starCount !== 1 ? 's' : '' }</p>
-			</li>
-		)
-	}
-
-}
-
-class Scoreboard extends React.Component {
-
-	render() {
-
-		const users = this.props.users.map((item, index) => {
-			return (
-				<ScoreboardItem
-					position={ index + 1 }
-					user={ item }
-					key={ index }
-				/>
-			)
-		})
-
-		return (
-			<ul>
-				{users}
-			</ul>
 		)
 	}
 
