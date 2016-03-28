@@ -6,7 +6,7 @@ import fixtures from 'json!./fixtures.json'
 /*
 	Todos/Notes:
 		- Implement redux
-		- Move the username field into its own component
+		- Move the username field into its own component - Forcing us to implement comms between components
 		- Add the `warn` class in a better(?) way: http://www.chloechen.io/react-animation-done-in-two-ways/
 		- Are `handleReposResponse` and `handleReposFailure` worth it?
 */
@@ -17,6 +17,7 @@ class App extends React.Component {
 		super()
 		this.state = { users: [] }
 		this.handleSearch = this.handleSearch.bind(this)
+		this.removeUser = this.removeUser.bind(this)
 	}
 
 	componentDidMount() {
@@ -41,7 +42,7 @@ class App extends React.Component {
 	}
 
 	handleSearch(event) {
-		if (event.key === 'Enter' || event.type === 'click') { // Note: I don't think this...
+		if (event.key === 'Enter' || event.type === 'click') { // Note: I don't like this...
 			const node = ReactDOM.findDOMNode(this.refs.username)
 			const username = node.value.trim()
 			fetch('https://api.github.com/users/' + username + '/repos?per_page=100')
@@ -70,18 +71,30 @@ class App extends React.Component {
 		}
 	}
 
+	removeUser(event) { // Note: Go see the comment in ScoreboardItem to read my disgust on passing the event and not something more meaningful
+		const username = event.target.value
+		const users = [...this.state.users.filter(user => user.username !== username)]
+		this.setState({ users: users })
+	}
+
 	render() {
 		return (
 			<div>
 				<h1>GitHub vs GitHub</h1>
-				<input
-					ref="username"
-					type="text"
-					placeholder="GitHub username..."
-					onKeyPress={ this.handleSearch }
-				/>
-				<button onClick={ this.handleSearch }>Go</button>
-				<Scoreboard users={ this.state.users } />
+				<div className="border" id="search">
+					<input
+						ref="username"
+						type="text"
+						placeholder="GitHub username..."
+						onKeyPress={ this.handleSearch }
+					/>
+					<button onClick={ this.handleSearch }>Go</button>
+				</div>
+				{/*
+					Note: removeUser is bound to this component in the constructor above. Without this, we lose the abililty to access
+					the state. Still not happy with the signature of removeUser above.
+				*/}
+				<Scoreboard users={ this.state.users } removeUser={ this.removeUser } />
 			</div>
 		)
 	}

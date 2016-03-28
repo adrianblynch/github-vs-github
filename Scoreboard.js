@@ -11,12 +11,13 @@ class Scoreboard extends React.Component {
 					position={ index + 1 }
 					user={ item }
 					key={ index }
+					removeUser={ this.props.removeUser }
 				/>
 			)
 		})
 
 		return (
-			<ul>
+			<ul className="border">
 				{users}
 			</ul>
 		)

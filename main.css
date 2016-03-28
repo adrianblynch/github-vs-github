@@ -25,9 +25,13 @@
 	}
 }
 
-/* User search */
+/* Search */
 
-input {
+#search {
+	padding: 10px;
+}
+
+#search input {
 	outline: none;
 }
 
@@ -36,9 +40,6 @@ input {
 ul {
 	list-style-type: none;
 	padding: 0px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	box-shadow: 0px 8px 6px -6px #444;
 }
 
 h3 {
@@ -63,4 +64,19 @@ li {
 
 li:first-child {
 	border-top: 0px;
+}
+
+ul li button {
+	font-weight: bold;
+	color: #999;
+	cursor: pointer;
+	float: right;
+}
+
+/* General */
+
+.border {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0px 8px 6px -6px #444;
 }
