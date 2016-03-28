@@ -21,6 +21,7 @@ class Scoreboard extends React.Component {
 				{users}
 			</ul>
 		)
+		
 	}
 
 }

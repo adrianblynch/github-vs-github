@@ -67,7 +67,8 @@ class App extends React.Component {
 			username: repos[0].owner.login,
 			avatarUrl: repos[0].owner.avatar_url,
 			starCount: repos.reduce((count, repo) => count + repo.stargazers_count, 0),
-			ownReposCount: repos.length
+			ownReposCount: repos.length,
+			homeUrl: repos[0].owner.html_url
 		}
 	}
 

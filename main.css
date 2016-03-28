@@ -42,8 +42,10 @@ ul {
 	padding: 0px;
 }
 
-h3 {
+h3 a {
 	font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+	text-decoration: none;
+	color: #333;
 }
 
 li img {
@@ -74,6 +76,10 @@ ul li button {
 }
 
 /* General */
+
+h1 {
+	font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
 
 .border {
 	border: 1px solid #ccc;

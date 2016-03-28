@@ -4,25 +4,29 @@
 			"username": "jquery",
 			"avatarUrl": "https://avatars.githubusercontent.com/u/70142?v=3",
 			"starCount": 80978,
-			"ownReposCount": 49
+			"ownReposCount": 49,
+			"homeUrl": "https://github.com/jquery"
 		},
 		{
 			"username": "adrianblynch",
 			"avatarUrl": "https://avatars.githubusercontent.com/u/4160967?v=3",
 			"starCount": 43,
-			"ownReposCount": 100
+			"ownReposCount": 100,
+			"homeUrl": "https://github.com/adrianblynch"
 		},
 		{
 			"username": "clarkie",
 			"avatarUrl": "https://avatars.githubusercontent.com/u/2292639?v=3",
 			"starCount": 21,
-			"ownReposCount": 47
+			"ownReposCount": 47,
+			"homeUrl": "https://github.com/clarkie"
 		},
 		{
 			"username": "owenDods",
 			"avatarUrl": "https://avatars.githubusercontent.com/u/9574149?v=3",
 			"starCount": 1,
-			"ownReposCount": 3
+			"ownReposCount": 3,
+			"homeUrl": "https://github.com/owenDods"
 		}
 	]
 }
