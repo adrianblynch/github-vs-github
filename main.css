@@ -35,6 +35,13 @@
 	outline: none;
 }
 
+/* History */
+
+#history {
+	padding: 10px;
+	margin-top: 10px;
+}
+
 /* Scoreboard */
 
 ul {
