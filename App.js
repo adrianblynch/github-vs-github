@@ -12,30 +12,6 @@ import fixtures from 'json!./fixtures.json'
 		- Are `handleReposResponse` and `handleReposFailure` worth it?
 */
 
-
-const initialHistoryState = []
-
-// History reducer
-const historyReducer = (state = initialHistoryState, action) => {
-	switch (action.type) {
-		case 'ADD_HISTORY': return [...state, action.username]
-		default: return state
-	}
-}
-
-// Store for deleted usernames
-const historyStore = createStore(historyReducer, [])
-
-class UserHistory extends React.Component {
-	render() {
-		return (
-			<div id="history" className="border">
-				{ this.props.history.join(', ') }
-			</div>
-		)
-	}
-}
-
 class App extends React.Component {
 
 	constructor() {
@@ -101,10 +77,6 @@ class App extends React.Component {
 		const username = event.target.value
 		const users = [...this.state.users.filter(user => user.username !== username)]
 		this.setState({ users: users })
-		historyStore.dispatch({
-			type: 'ADD_HISTORY',
-			username: username
-		})
 	}
 
 	render() {
@@ -124,7 +96,6 @@ class App extends React.Component {
 					Note: removeUser is bound to this component in the constructor above. Without this, we lose the abililty to access
 					the state. Still not happy with the signature of removeUser above.
 				*/}
-				<UserHistory history={ historyStore.getState() } />
 				<Scoreboard users={ this.state.users } removeUser={ this.removeUser } />
 			</div>
 		)
