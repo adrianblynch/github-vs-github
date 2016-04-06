@@ -19,10 +19,12 @@ class App extends React.Component {
 		this.state = { users: [] }
 		this.handleSearch = this.handleSearch.bind(this)
 		this.removeUser = this.removeUser.bind(this)
+		this.sortByStarCount = this.sortByStarCount.bind(this)
 	}
 
 	componentDidMount() {
 		ReactDOM.findDOMNode(this.refs.username).focus();
+		fixtures.users.sort(this.sortByStarCount)
 		this.setState(fixtures)
 	}
 
